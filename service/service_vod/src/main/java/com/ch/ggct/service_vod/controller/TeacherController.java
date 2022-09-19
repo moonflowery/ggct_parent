@@ -26,9 +26,10 @@ import java.util.List;
  * @author ch
  * @since 2022-09-11
  */
-@Api(tags = "讲师管理系统")
-@RestController
-@RequestMapping("/admin/vod/teacher")
+    @Api(tags = "讲师管理系统")
+    @RestController
+    @RequestMapping("/admin/vod/teacher")
+    @CrossOrigin
 public class TeacherController {
     @Autowired
     private TeacherService teacherService;
@@ -64,8 +65,6 @@ public class TeacherController {
     public Result findPage(@PathVariable long current, @PathVariable long limit, @RequestBody TeacherQueryVo teacherQueryVo) {
         //创建分页对象
         Page<Teacher> pageParam = new Page<>(current, limit);
-
-
         if (teacherQueryVo == null) {
             IPage<Teacher> page = teacherService.page(pageParam, null);
             return Result.ok(page);
@@ -100,13 +99,18 @@ public class TeacherController {
         }
     }
     @ApiOperation(value = "新增")
-    @PostMapping("save")
+    @PostMapping("saveTeacher")
     public Result save(@RequestBody Teacher teacher) {
-        teacherService.save(teacher);
-        return Result.ok(null);
+        boolean isSave = teacherService.save(teacher);
+        if (isSave){
+            return Result.ok(null);
+        }else {
+            return Result.fail(null);
+        }
+
     }
     @ApiOperation(value = "获取")
-    @GetMapping("get/{id}")
+    @GetMapping("getTeacher/{id}")
     public Result get(@PathVariable Long id) {
         Teacher teacher = teacherService.getById(id);
         return Result.ok(teacher);
@@ -118,11 +122,16 @@ public class TeacherController {
         return Result.ok(null);
     }
     @ApiOperation(value = "根据id列表删除")
-    @DeleteMapping("batchRemove")
-    public Result batchRemove(@RequestBody List<Long> idList) {
-        teacherService.removeByIds(idList);
-        return Result.ok(null);
+    @DeleteMapping("removeBatch")
+    public Result removeBatch(@RequestBody List<Long> idList) {
+        boolean isBatchDel = teacherService.removeByIds(idList);
+        if (isBatchDel) {
+            return Result.ok(null);
+        } else {
+            return Result.fail(null);
+        }
     }
+
 
 }
 

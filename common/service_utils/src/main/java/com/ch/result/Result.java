@@ -31,7 +31,7 @@ public class Result<T> {
     public static <T> Result ok(T data){
         Result<T> result = new Result<>();
         result.setMessage("成功");
-        result.setCode(200);
+        result.setCode(20000);
         if ( data != null ) {
             result.setData(data);
         }
