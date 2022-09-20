@@ -45,6 +45,13 @@
         <groupId>joda-time</groupId>
         <artifactId>joda-time</artifactId>
     </dependency>
+    <!--EasyExcel-->
+    <!-- https://mvnrepository.com/artifact/com.alibaba/easyexcel -->
+    <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>easyexcel</artifactId>
+        <version>2.1.2</version>
+    </dependency>
 
 
 
