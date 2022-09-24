@@ -14,7 +14,6 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/admin/vod/user")
-@CrossOrigin
 public class UserController {
     @PostMapping("login")
     public Result login(){

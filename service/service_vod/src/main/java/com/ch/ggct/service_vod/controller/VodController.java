@@ -17,7 +17,6 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 @Api("云点播管理接口")
 @RequestMapping("/admin/vod/")
-@CrossOrigin
 public class VodController {
     @Autowired
     VodService vodService;
