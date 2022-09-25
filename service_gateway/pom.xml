@@ -13,6 +13,11 @@
 
 
     <dependencies>
+        <dependency>
+            <groupId>com.ch</groupId>
+            <artifactId>service_utils</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
 
 
         <!-- 网关 -->

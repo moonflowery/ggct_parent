@@ -3,6 +3,7 @@ package com.ch.ggct;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
  * @author chenghao
@@ -10,6 +11,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * @备注：
  * @data 2022年09月25日 01:43
  */
+@EnableSwagger2
 @EnableDiscoveryClient
 @SpringBootApplication
 public class ServiceOrderApplication {

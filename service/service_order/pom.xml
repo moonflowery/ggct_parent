@@ -10,9 +10,18 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>service_order</artifactId>
-
-
-
+<dependencies>
+    <dependency>
+        <groupId>com.ch</groupId>
+        <artifactId>service_utils</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+    <!-- 服务注册 -->
+    <dependency>
+        <groupId>com.alibaba.cloud</groupId>
+        <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+    </dependency>
+</dependencies>
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
