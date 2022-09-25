@@ -1,0 +1,19 @@
+package com.ch.ggct;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+
+/**
+ * @author chenghao
+ * @purpose：
+ * @备注：
+ * @data 2022年09月25日 01:43
+ */
+@EnableDiscoveryClient
+@SpringBootApplication
+public class ServiceOrderApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(ServiceOrderApplication.class,args);
+    }
+}
