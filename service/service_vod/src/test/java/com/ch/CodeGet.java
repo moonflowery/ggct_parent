@@ -21,16 +21,16 @@ public class CodeGet {
         GlobalConfig gc = new GlobalConfig();
         String projectPath = System.getProperty("user.dir");
         //gc.setOutputDir(projectPath + "/src/main/java");
-        gc.setOutputDir("/Users/chenghao/Code/GuiGuClass/ggct_parent/service/service_order"+"/src/main/java");
+        gc.setOutputDir("/Users/chenghao/Code/GuiGuClass/ggct_parent/service/service_activity"+"/src/main/java");
 
-        gc.setServiceName("%sService");	//去掉Service接口的首字母I
+        gc.setServiceName("%sService");	//去掉Service接口的首字母
         gc.setAuthor("ch");
         gc.setOpen(false);
         mpg.setGlobalConfig(gc);
 
         // 3、数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://localhost:3306/glkt_order?useSSL=false&serverTimezone=GMT%2B8&characterEncoding=UTF-8");
+        dsc.setUrl("jdbc:mysql://localhost:3306/glkt_activity?useSSL=false&serverTimezone=GMT%2B8&characterEncoding=UTF-8");
         dsc.setDriverName("com.mysql.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("1234");
@@ -41,7 +41,7 @@ public class CodeGet {
         PackageConfig pc = new PackageConfig();
          //模块名
         pc.setParent("com.ch.ggct");
-        pc.setModuleName("order");
+        pc.setModuleName("user");
         pc.setController("controller");
         pc.setEntity("entity");
         pc.setService("service");
@@ -51,7 +51,7 @@ public class CodeGet {
         // 5、策略配置
         StrategyConfig strategy = new StrategyConfig();
 
-        strategy.setInclude("order_info","order_detail");
+        strategy.setInclude("coupon_use");
 
         strategy.setNaming(NamingStrategy.underline_to_camel);//数据库表映射到实体的命名策略
 

@@ -14,6 +14,8 @@
     <modules>
         <module>service_vod</module>
         <module>service_order</module>
+        <module>service_user</module>
+        <module>service_activity</module>
     </modules>
 
     <properties>
@@ -52,11 +54,13 @@
         <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
     </dependency>
 
-    <!-- 服务调用feign -->
-   <!-- <dependency>
+   <!--服务调用feign-->
+    <dependency>
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-starter-openfeign</artifactId>
-    </dependency>-->
+    </dependency>
+
+
 
     <!-- 流量控制 -->
   <!--  <dependency>
@@ -70,6 +74,11 @@
         <artifactId>spring-boot-devtools</artifactId>
         <optional>true</optional>
     </dependency>
+        <dependency>
+            <groupId>com.ch</groupId>
+            <artifactId>common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
 </dependencies>
 
     <build>
