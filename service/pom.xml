@@ -16,6 +16,7 @@
         <module>service_order</module>
         <module>service_user</module>
         <module>service_activity</module>
+        <module>service_wechat</module>
     </modules>
 
     <properties>
@@ -35,6 +36,12 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
+    <!--导入工具模块-->
+        <dependency>
+            <groupId>com.ch</groupId>
+            <artifactId>service_utils</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
 
     <!--mybatis-plus-->
     <dependency>
@@ -59,6 +66,8 @@
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-starter-openfeign</artifactId>
     </dependency>
+
+
 
 
 
