@@ -1,11 +1,11 @@
 package com.ch.ggct.wechat.controller;
 
-import com.alibaba.fastjson.JSONObject;
+import com.ch.ggct.wechat.service.MessageService;
 import com.ch.ggct.wechat.utils.SHA1;
-import me.chanjar.weixin.mp.bean.message.WxMpXmlMessage;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +27,8 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/wechat/message")
 public class MessageController {
+    @Autowired
+    MessageService messageService;
 
     private static final String token = "ggkt";
 
@@ -54,10 +56,9 @@ public class MessageController {
      */
     @PostMapping
     public String receiveMessage(HttpServletRequest request) throws Exception {
+        Map<String, String> param = this.parseXml(request);
+        return messageService.receiveMessage(param);
 
-        WxMpXmlMessage wxMpXmlMessage = WxMpXmlMessage.fromXml(request.getInputStream());
-        System.out.println(JSONObject.toJSONString(wxMpXmlMessage));
-        return "success";
     }
 
     private Map<String, String> parseXml(HttpServletRequest request) throws Exception {

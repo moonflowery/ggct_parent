@@ -16,9 +16,9 @@ import java.util.List;
  * @data 2022年09月27日 08:21
  */
 @FeignClient("service-vod")
-public interface Coursefeign {
+public interface CourseFeign {
     @ApiOperation("根据关键字查询课程")
-    @GetMapping("inner/findByKeyword/{keyword}")
+    @GetMapping("/admin/vod/course/inner/findByKeyword/{keyword}")
     public List<Course> findByKeyword(
             @ApiParam(value = "关键字", required = true)
             @PathVariable String keyword);
