@@ -2,6 +2,8 @@ package com.ch.ggct.wechat.controller;
 
 import com.ch.ggct.wechat.service.MessageService;
 import com.ch.ggct.wechat.utils.SHA1;
+import com.ch.result.Result;
+import me.chanjar.weixin.common.error.WxErrorException;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
@@ -31,6 +33,12 @@ public class MessageController {
     MessageService messageService;
 
     private static final String token = "ggkt";
+
+    @GetMapping("/pushPayMessage")
+    public Result pushPayMessage() throws WxErrorException {
+        messageService.pushPayMessage(1L);
+        return Result.ok(null);
+    }
 
     /**
      * 服务器有效性验证
