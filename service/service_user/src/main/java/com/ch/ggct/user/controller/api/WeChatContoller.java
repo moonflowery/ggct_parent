@@ -45,15 +45,17 @@ public class WeChatContoller {
      * @param request
      * @return: java.lang.String
      **/
-    @GetMapping("/authorize")
+    @GetMapping("authorize")
     public String authorize(@RequestParam("returnUrl") String returnUrl, HttpServletRequest request) {
         String redirectURL = wxMpService.oauth2buildAuthorizationUrl(userInfoUrl,
                 WxConsts.OAUTH2_SCOPE_USER_INFO,
                 URLEncoder.encode(returnUrl.replace("guiguketan", "#")));
+        System.out.println(redirectURL);
+        System.out.println("访问到授权接口000000000000000--------------");
         return "redirect:" + redirectURL;
     }
 
-    @GetMapping
+    @GetMapping("userInfo")
     public String userInfo(@RequestParam("code") String code,@RequestParam("state") String returnUrl) throws WxErrorException {
 
         //拿着code可获取openID
@@ -64,6 +66,7 @@ public class WeChatContoller {
 
         System.out.println("【微信网页授权】wxMpUser={}"+ JSON.toJSONString(wxMpUser));
         UserInfo userInfo = userInfoService.getByOpenid(openId);
+        System.out.println("77777777777777777777777777访问到了userInfo接口·········");
         if(null == userInfo) {
             userInfo = new UserInfo();
             userInfo.setOpenId(openId);

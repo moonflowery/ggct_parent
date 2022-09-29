@@ -18,7 +18,7 @@ import java.util.List;
 @FeignClient("service-vod")
 public interface CourseFeign {
     @ApiOperation("根据关键字查询课程")
-    @GetMapping("/admin/vod/course/inner/findByKeyword/{keyword}")
+    @GetMapping("/api/vod/course/inner/findByKeyword/{keyword}")
     public List<Course> findByKeyword(
             @ApiParam(value = "关键字", required = true)
             @PathVariable String keyword);
