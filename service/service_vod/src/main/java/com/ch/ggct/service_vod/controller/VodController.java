@@ -6,7 +6,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 /**
  * @author chenghao
@@ -27,8 +26,8 @@ public class VodController {
         return Result.ok(fileId);
     }
     @ApiOperation("删除视频")
-    @DeleteMapping("remove")
-    public Result removeVideo(String fileId){
+    @DeleteMapping("remove/{fileId}")
+    public Result removeVideo(@PathVariable String fileId){
         vodService.removeVideo(fileId);
         return Result.ok(null);
 
