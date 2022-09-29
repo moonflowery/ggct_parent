@@ -22,5 +22,10 @@ public interface CourseFeign {
     public List<Course> findByKeyword(
             @ApiParam(value = "关键字", required = true)
             @PathVariable String keyword);
+    @ApiOperation("根据ID查询课程")
+    @GetMapping("inner/getById/{courseId}")
+    public Course getById(
+            @ApiParam(value = "课程ID", required = true)
+            @PathVariable Long courseId);
 
 }
