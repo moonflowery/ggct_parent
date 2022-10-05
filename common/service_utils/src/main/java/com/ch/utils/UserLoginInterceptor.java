@@ -1,7 +1,6 @@
 package com.ch.utils;
 
-import com.atguigu.ggkt.common.helper.JwtHelper;
-import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties;
+import com.ch.jwt.JwtHelper;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;

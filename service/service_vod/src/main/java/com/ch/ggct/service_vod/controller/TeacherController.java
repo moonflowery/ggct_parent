@@ -10,8 +10,6 @@ import com.ch.result.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import org.apache.ibatis.annotations.Param;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +30,12 @@ import java.util.List;
 public class TeacherController {
     @Autowired
     private TeacherService teacherService;
+    @ApiOperation("根据id查询")
+    @GetMapping("inner/getTeacher/{id}")
+    public Teacher getTeacherLive(@PathVariable Long id) {
+        Teacher teacher = teacherService.getById(id);
+        return teacher;
+    }
 
     /*
         查询所有讲师

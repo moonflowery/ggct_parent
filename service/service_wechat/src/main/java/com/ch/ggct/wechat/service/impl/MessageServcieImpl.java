@@ -69,7 +69,7 @@ public class MessageServcieImpl implements MessageService {
         WxMpTemplateMessage templateMessage = WxMpTemplateMessage.builder()
                 .toUser(openid)//要推送的用户openid
                 .templateId("XqoW7H9EemEferL-YkzU60OgTJIjSCjnLTbPtygmjbY")//模板id
-                .url("http://27973163.cpolar.top/#/pay/"+orderId)//点击模板消息要访问的网址
+                .url("http://21112c01.r3.cpolar.top/#/pay/"+orderId)//点击模板消息要访问的网址
                 .build();
         //3,如果是正式版发送消息，，这里需要配置你的信息
         templateMessage.addData(new WxMpTemplateData("first", "亲爱的用户：您有一笔订单支付成功。", "#272727"));

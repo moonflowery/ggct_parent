@@ -1,5 +1,4 @@
 package com.ch.ggct.user.controller.api;
-
 import me.chanjar.weixin.common.api.WxConsts;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.bean.result.WxMpOAuth2AccessToken;
@@ -20,10 +19,10 @@ public class GetOpenIdController {
     @Autowired
     private WxMpService wxMpService;
 
-    @GetMapping("/authorize")
+    @GetMapping("authorize")
     public String authorize(@RequestParam("returnUrl") String returnUrl, HttpServletRequest request) {
         String userInfoUrl =
-                "http://35a9d281.r3.cpolar.top/api/user/openid/userInfo";
+                "https://e5563y2927.zicp.fun/api/user/openid/userInfo";
         String redirectURL = wxMpService
                 .oauth2buildAuthorizationUrl(userInfoUrl,
                         WxConsts.OAUTH2_SCOPE_USER_INFO,

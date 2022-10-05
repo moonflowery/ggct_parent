@@ -3,7 +3,6 @@ package com.ch.exception;
 import com.ch.result.Result;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -30,10 +29,13 @@ public class GlobleExceptionHandler {
      * @param e
      * @return: com.ch.result.Result
      **/
-    //注意：之前Controller上为Rest...，现在没有，不会返回json
+    //注意：之前Contrller上为Rest...，现在没有，不会返回json
     @ResponseBody  //所以
     @ExceptionHandler(Exception.class)
+
     public Result error(Exception e) {
+        e.printStackTrace();
+        System.out.println("执行全局异常处理");
         return Result.fail(null).message("执行全局异常处理");
     }
 
