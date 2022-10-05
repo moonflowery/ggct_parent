@@ -1,7 +1,14 @@
 package com.ch.ggct.user.controller.api;
+
+import com.alibaba.fastjson.JSON;
+import com.ch.ggct.model.user.UserInfo;
+import com.ch.ggct.user.service.UserInfoService;
+import com.ch.jwt.JwtHelper;
 import me.chanjar.weixin.common.api.WxConsts;
+import me.chanjar.weixin.common.exception.WxErrorException;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.bean.result.WxMpOAuth2AccessToken;
+import me.chanjar.weixin.mp.bean.result.WxMpUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +25,8 @@ public class GetOpenIdController {
 
     @Autowired
     private WxMpService wxMpService;
+    @Autowired
+    private UserInfoService userInfoService;
 
     @GetMapping("authorize")
     public String authorize(@RequestParam("returnUrl") String returnUrl, HttpServletRequest request) {
@@ -34,9 +43,47 @@ public class GetOpenIdController {
     @ResponseBody
     public String userInfo(@RequestParam("code") String code,
                            @RequestParam("state") String returnUrl) throws Exception {
-        WxMpOAuth2AccessToken wxMpOAuth2AccessToken = this.wxMpService.oauth2getAccessToken(code);
+       /* WxMpOAuth2AccessToken wxMpOAuth2AccessToken = this.wxMpService.oauth2getAccessToken(code);
         String openId = wxMpOAuth2AccessToken.getOpenId();
         System.out.println("【服务号微信网页授权】openId={}"+openId);
-        return openId;
+        return openId;*/
+        try {
+            //拿着code请求
+            WxMpOAuth2AccessToken wxMpOAuth2AccessToken = wxMpService.oauth2getAccessToken(code);
+            //获取openid
+            String openId = wxMpOAuth2AccessToken.getOpenId();
+            System.out.println("openid:"+openId);
+
+            //获取微信信息
+            WxMpUser wxMpUser = wxMpService.oauth2getUserInfo(wxMpOAuth2AccessToken, null);
+            System.out.println("wxMpUser:"+ JSON.toJSONString(wxMpUser));
+
+            //获取微信信息添加数据库
+            UserInfo userInfo = userInfoService.getByOpenid(openId);
+            if(userInfo == null) {
+                userInfo = new UserInfo();
+                userInfo.setOpenId(openId);
+                userInfo.setNickName(wxMpUser.getNickname());
+                userInfo.setAvatar(wxMpUser.getHeadImgUrl());
+                userInfo.setSex(wxMpUser.getSexId());
+                userInfo.setProvince(wxMpUser.getProvince());
+                userInfoService.save(userInfo);
+            }
+
+            //授权完成之后，跳转具体功能页面
+            //生成token，按照一定规则生成字符串，可以包含用户信息
+            String token = JwtHelper.createToken(userInfo.getId(),userInfo.getNickName());
+            //  localhost:8080/weixin?a=1&token=222
+            if(returnUrl.indexOf("?")==-1) {
+                return "redirect:"+returnUrl+"?token="+token;
+            } else {
+                return "redirect:"+returnUrl+"&token="+token;
+            }
+
+        } catch (WxErrorException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
+
 }
